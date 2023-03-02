@@ -6,7 +6,6 @@ export function map<T, K> (mapper: Mapper<T, K>): PipeableFunction<T, K> {
   return function * (iterator: Iterable<T>) {
     let i = 0
     for (const v of iterator) {
-      console.log('map =>', v)
       yield mapper(v, i)
       i++
     }
