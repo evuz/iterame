@@ -1,0 +1,41 @@
+{
+  "name": "iterame",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/iterame.umd.cjs",
+  "module": "./dist/iterame.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/iterame.js",
+      "require": "./dist/iterame.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc",
+    "lint": "eslint src/**",
+    "lint:format": "eslint --fix src/**",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "type:check": "tsc",
+    "type:check:watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "5.54.0",
+    "@typescript-eslint/parser": "5.54.0",
+    "eslint": "8.35.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "15.6.1",
+    "eslint-plugin-promise": "6.1.1",
+    "typescript": "4.9.3",
+    "vite": "4.1.0",
+    "vitest": "^0.29.2"
+  }
+}
