@@ -17,8 +17,32 @@ export class Iterame<T> {
     return this
   }
 
+  toArray (): T[] {
+    const arr = []
+    for (const value of this.iterator) {
+      arr.push(value)
+    }
+
+    return arr
+  }
+
   get (): Iterable<T> {
     return this.iterator
+  }
+
+  lenght (): number {
+    const arr = this.toArray()
+    return arr.length
+  }
+
+  at (n: number): T | undefined {
+    const arr = this.toArray()
+    let index = n
+    if (n < 0) {
+      index = arr.length + n
+    }
+
+    return arr[index]
   }
 
   first (): T | undefined {
@@ -35,15 +59,6 @@ export class Iterame<T> {
     }
 
     return last
-  }
-
-  toArray (): T[] {
-    const arr = []
-    for (const value of this.iterator) {
-      arr.push(value)
-    }
-
-    return arr
   }
 }
 
