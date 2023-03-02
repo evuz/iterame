@@ -3,28 +3,32 @@ export type PipeableFunction<T, K> = (iterator: Iterable<T>) => Generator<K, voi
 export class Iterame<T> {
   constructor (private iterator: Iterable<T>) {}
 
+  pipe<A>(fn: PipeableFunction<T, A>): Iterame<A>
+  pipe<A, B>(fn1: PipeableFunction<T, A>, fn2: PipeableFunction<A, B>): Iterame<B>
+  pipe<A, B, C>(fn1: PipeableFunction<T, A>, fn2: PipeableFunction<A, B>, fn3: PipeableFunction<B, C>): Iterame<C>
+  pipe<A, B, C, D>(fn1: PipeableFunction<T, A>, fn2: PipeableFunction<A, B>, fn3: PipeableFunction<B, C>, fn4: PipeableFunction<C, D>): Iterame<D>
+  pipe<A, B, C, D, E>(fn1: PipeableFunction<T, A>, fn2: PipeableFunction<A, B>, fn3: PipeableFunction<B, C>, fn4: PipeableFunction<C, D>, fn5: PipeableFunction<D, E>): Iterame<E>
   pipe (...fns: PipeableFunction<any, any>[]) {
     while (fns.length) {
       const fn = fns.shift()
-
       this.iterator = fn!(this.iterator)
     }
 
     return this
   }
 
-  get () {
+  get (): Iterable<T> {
     return this.iterator
   }
 
-  first () {
+  first (): T | undefined {
     // eslint-disable-next-line no-unreachable-loop
     for (const value of this.iterator) {
       return value
     }
   }
 
-  last () {
+  last (): T | undefined {
     let last
     for (const value of this.iterator) {
       last = value
@@ -33,7 +37,7 @@ export class Iterame<T> {
     return last
   }
 
-  toArray () {
+  toArray (): T[] {
     const arr = []
     for (const value of this.iterator) {
       arr.push(value)
