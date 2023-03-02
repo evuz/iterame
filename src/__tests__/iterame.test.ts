@@ -30,4 +30,22 @@ describe('Iterame', () => {
       expect(filter).toBeCalledTimes(1)
     })
   })
+
+  describe('first', () => {
+    test('should get the first item', () => {
+      const set = new Set([{ id: 2 }, { id: 3 }, { id: 4 }])
+
+      const first = iterame(set).first()
+      expect(first).toEqual({ id: 2 })
+    })
+  })
+
+  describe('last', () => {
+    test('should get the last item', () => {
+      const set = new Set([{ id: 2 }, { id: 3 }, { id: 4 }])
+
+      const last = iterame(set).last()
+      expect(last).toEqual({ id: 4 })
+    })
+  })
 })

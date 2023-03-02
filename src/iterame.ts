@@ -17,6 +17,22 @@ export class Iterame<T> {
     return this.iterator
   }
 
+  first () {
+    // eslint-disable-next-line no-unreachable-loop
+    for (const value of this.iterator) {
+      return value
+    }
+  }
+
+  last () {
+    let last
+    for (const value of this.iterator) {
+      last = value
+    }
+
+    return last
+  }
+
   toArray () {
     const arr = []
     for (const value of this.iterator) {
