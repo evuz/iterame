@@ -35,14 +35,19 @@ export class Iterame<T> {
     return arr.length
   }
 
-  at (n: number): T | undefined {
-    const arr = this.toArray()
-    let index = n
-    if (n < 0) {
-      index = arr.length + n
+  value (): T | undefined {
+    let i = 0
+    let last: T | undefined
+
+    for (const value of this.iterator) {
+      if (i > 0) {
+        throw Error('There are more than one value in the iterator')
+      }
+      last = value
+      i++
     }
 
-    return arr[index]
+    return last
   }
 
   first (): T | undefined {
@@ -53,7 +58,7 @@ export class Iterame<T> {
   }
 
   last (): T | undefined {
-    let last
+    let last: T | undefined
     for (const value of this.iterator) {
       last = value
     }

@@ -58,19 +58,22 @@ describe('Iterame', () => {
     })
   })
 
-  describe('at', () => {
-    test('should return the index', () => {
-      const set = new Set([0, 1, 2, 3, 4, 5])
+  describe('value', () => {
+    test('should return the unique value', () => {
+      const set = new Set([3])
 
-      const item = iterame(set).at(3)
+      const item = iterame(set).value()
       expect(item).toEqual(3)
     })
 
-    test('should return the index from tail', () => {
+    test('should throw an error because', () => {
       const set = new Set([0, 1, 2, 3, 4, 5])
 
-      expect(iterame(set).at(-1)).toEqual(5)
-      expect(iterame(set).at(-4)).toEqual(2)
+      function error () {
+        iterame(set).value()
+      }
+
+      expect(error).toThrowError()
     })
   })
 })
