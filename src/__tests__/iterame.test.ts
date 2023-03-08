@@ -29,6 +29,19 @@ describe('Iterame', () => {
       expect(map).toBeCalledTimes(1)
       expect(filter).toBeCalledTimes(1)
     })
+
+    test('should be immutable', () => {
+      const set = new Set([0, 1, 2, 3, 4, 5])
+      const el = iterame(set)
+      const piped = el.pipe(function * (it) {
+        for (const v of it) {
+          yield v
+        }
+      })
+
+      expect(el.get()).toBe(set)
+      expect(el.get()).not.toBe(piped.get())
+    })
   })
 
   describe('first', () => {

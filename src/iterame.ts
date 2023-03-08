@@ -9,12 +9,13 @@ export class Iterame<T> {
   pipe<A, B, C, D>(fn1: PipeableFunction<T, A>, fn2: PipeableFunction<A, B>, fn3: PipeableFunction<B, C>, fn4: PipeableFunction<C, D>): Iterame<D>
   pipe<A, B, C, D, E>(fn1: PipeableFunction<T, A>, fn2: PipeableFunction<A, B>, fn3: PipeableFunction<B, C>, fn4: PipeableFunction<C, D>, fn5: PipeableFunction<D, E>): Iterame<E>
   pipe (...fns: PipeableFunction<any, any>[]) {
+    let iterator = this.iterator
     while (fns.length) {
       const fn = fns.shift()
-      this.iterator = fn!(this.iterator)
+      iterator = fn!(iterator)
     }
 
-    return this
+    return new Iterame(iterator)
   }
 
   toArray (): T[] {
