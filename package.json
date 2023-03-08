@@ -1,6 +1,6 @@
 {
   "name": "iterame",
-  "private": true,
+  "description": "Transform a collection in a single iteration",
   "version": "0.0.0",
   "type": "module",
   "main": "./dist/iterame.umd.cjs",
@@ -15,6 +15,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evuz/iterame.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc",
