@@ -2,6 +2,7 @@ export * from './iterame'
 
 // Operators
 export * from './operators/at'
+export * from './operators/concat'
 export * from './operators/every'
 export * from './operators/filter'
 export * from './operators/find'
