@@ -44,6 +44,40 @@ describe('Iterame', () => {
     })
   })
 
+  describe('to', () => {
+    test('should get a object', () => {
+      const set = new Set([
+        { id: 1, name: 'one' },
+        { id: 2, name: 'two' },
+        { id: 3, name: 'three' },
+        { id: 4, name: 'four' }
+      ])
+
+      const object = iterame(set).to((acc, v) => {
+        acc[v.id] = v.name
+        return acc
+      }, {} as Record<number, string>)
+
+      expect(object).toEqual({ 1: 'one', 2: 'two', 3: 'three', 4: 'four' })
+    })
+
+    test('should get a map', () => {
+      const set = new Set([
+        { id: 1, name: 'one' },
+        { id: 2, name: 'two' },
+        { id: 3, name: 'three' },
+        { id: 4, name: 'four' }
+      ])
+
+      const map = iterame(set).to((acc, v) => {
+        acc.set(v.id, v.name)
+        return acc
+      }, new Map<number, string>())
+
+      expect(map).toBeInstanceOf(Map)
+    })
+  })
+
   describe('first', () => {
     test('should get the first item', () => {
       const set = new Set([{ id: 2 }, { id: 3 }, { id: 4 }])

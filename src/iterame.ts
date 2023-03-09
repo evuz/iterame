@@ -1,4 +1,5 @@
 export type PipeableFunction<T, K> = (iterator: Iterable<T>) => Generator<K, void>
+type ReduceFunction<T, K> = (accumulator: K, value: T, index: number) => K
 
 export class Iterame<T> {
   constructor (private iterator: Iterable<T>) {}
@@ -34,6 +35,18 @@ export class Iterame<T> {
   lenght (): number {
     const arr = this.toArray()
     return arr.length
+  }
+
+  to<K> (fn: ReduceFunction<T, K>, initial: K): K {
+    let i = 0
+    let accumulator = initial as K
+
+    for (const value of this.iterator) {
+      accumulator = fn(accumulator, value, i)
+      i++
+    }
+
+    return accumulator
   }
 
   value (): T | undefined {
