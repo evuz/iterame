@@ -72,3 +72,26 @@ iterame(range(0, 5)).pipe(some(v => v === 10)).value()
 // [0, 1, 2]
 iterame(range(0, 5)).pipe(take(3)).toArray()
 ```
+
+## How to create your own operator
+Operators must fulfil this `type`
+```
+type Operator<T, K> = (iterator: Iterable<T>) => Generator<K, void>
+```
+For example, to create an operator called `add` to add a value at the end of the initial iterator:
+```
+function add<T> (value: T) {
+  return function * (iterator: Iterable<T>) {
+    for (const v of iterator) {
+      yield v
+    }
+    yield value
+  }
+}
+
+// [0, 1, 2, 3, 4, 10]
+iterame(range(0, 5)).pipe(add(10))
+```
+
+## Motivation
+To facilitate the use of structure as `map` or `set` and at the same time learn more about the iterators
