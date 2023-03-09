@@ -3,6 +3,7 @@
   "description": "Transform a collection in a single iteration",
   "version": "1.0.1",
   "type": "module",
+  "sideEffects": false,
   "main": "./dist/iterame.umd.cjs",
   "module": "./dist/iterame.js",
   "types": "./dist/index.d.ts",
@@ -41,5 +42,14 @@
     "typescript": "4.9.3",
     "vite": "4.1.0",
     "vitest": "^0.29.2"
-  }
+  },
+  "keywords": [
+    "iterable",
+    "iterator",
+    "collection",
+    "transform",
+    "functional",
+    "map",
+    "set"
+  ]
 }
